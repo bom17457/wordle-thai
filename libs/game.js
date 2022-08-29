@@ -1,13 +1,13 @@
-const { isNullOrUndefined } = require("./utils/common");
+import { isNullOrUndefined } from "./utils/common";
 
-module.exports.evaluate = (solution, guess) => {
+export function evaluate(solution, guess) {
   if (isNullOrUndefined(solution)) return [];
   if (isNullOrUndefined(guess)) return [];
   if (solution.length != guess.length) return [];
   const distanceSolutions = distance(solution, guess);
   const evaluation = distanceSolutions.map(mapEvaluate(solution));
   return order_evaluate(evaluation).map((e) => e.evaluate_value);
-};
+}
 
 const mapEvaluate = (solution) => (value, index) => {
   const match_character = value.match_character;

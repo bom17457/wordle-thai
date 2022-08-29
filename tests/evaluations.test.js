@@ -1,6 +1,21 @@
-const { evaluate } = require("../libs/game");
+import { evaluate } from "../libs/game";
 
 describe("evaluations", () => {
+  it("should return emptyp array when input empty array, null or undefined to solution", () => {
+    const result = evaluate(null);
+    expect(result).toEqual([]);
+  });
+
+  it("should return emptyp array when input empty array, null or undefined to solution", () => {
+    const result = evaluate(["a"], null);
+    expect(result).toEqual([]);
+  });
+
+  it("should return emptyp array when input empty array, null or undefined to solution", () => {
+    const result = evaluate(["a"], ["a", "b"]);
+    expect(result).toEqual([]);
+  });
+
   it("should return evaluation when guess word is พะแนง and soulution is พะแนง", () => {
     const solution = ["พ", "ะ", "แ", "น", "ง"];
     const guessWord = ["พ", "ะ", "แ", "น", "ง"];
