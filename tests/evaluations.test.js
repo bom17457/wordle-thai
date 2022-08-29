@@ -95,4 +95,12 @@ describe("evaluations", () => {
     const result = evaluate(solution, guessWord);
     expect(result).toEqual(["correct", "exclude", "correct"]);
   });
+
+  it("should return evaluation when guess bread and solution is chief", () => {
+    const solution = ["c", "h", "i", "e", "f"];
+    const guessWord = ["b", "r", "e", "a", "d"];
+
+    const result = evaluate(solution, guessWord);
+    expect(result).toEqual(["exclude", "exclude", "include", "exclude", "exclude"]);
+  })
 });
