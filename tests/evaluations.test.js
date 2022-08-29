@@ -1,9 +1,9 @@
 const { evaluate } = require("../libs/game");
 
 describe("evaluations", () => {
-  it("should return all correct evaluation when guess word is พะแนง and soulution is พะแนง", () => {
-    const solution = "พะแนง";
-    const guessWord = "พะแนง";
+  it("should return evaluation when guess word is พะแนง and soulution is พะแนง", () => {
+    const solution = ["พ", "ะ", "แ", "น", "ง"];
+    const guessWord = ["พ", "ะ", "แ", "น", "ง"];
 
     const result = evaluate(solution, guessWord);
     expect(result).toEqual([
@@ -15,9 +15,9 @@ describe("evaluations", () => {
     ]);
   });
 
-  it("should return some correct and some include evaluation when guess word is ะพแนง and soulution is พะแนง", () => {
-    const solution = "พะแนง";
-    const guessWord = "ะพแนง";
+  it("should return evaluation when guess word is ะพแนง and soulution is พะแนง", () => {
+    const solution = ["พ", "ะ", "แ", "น", "ง"];
+    const guessWord = ["ะ", "พ", "แ", "น", "ง"];
 
     const result = evaluate(solution, guessWord);
     expect(result).toEqual([
@@ -29,9 +29,9 @@ describe("evaluations", () => {
     ]);
   });
 
-  it("should return some correct and some include and some exclude evaluation when guess word is ะพแนก and soulution is พะแนง", () => {
-    const solution = "พะแนง";
-    const guessWord = "ะพแนก";
+  it("should return evaluation evaluation when guess word is ะพแนก and soulution is พะแนง", () => {
+    const solution = ["พ", "ะ", "แ", "น", "ง"];
+    const guessWord = ["ะ", "พ", "แ", "น", "ก"];
 
     const result = evaluate(solution, guessWord);
     expect(result).toEqual([
@@ -43,20 +43,17 @@ describe("evaluations", () => {
     ]);
   });
 
-  it("should return when guess word is นน and solution is ทน", () => {
-    const solution = "ทน";
-    const guessWord = "นน";
+  it("should return evaluation when guess word is นน and solution is ทน", () => {
+    const solution = ["ท", "น"];
+    const guessWord = ["น", "น"];
 
     const result = evaluate(solution, guessWord);
-    expect(result).toEqual([
-      "exclude",
-      "correct",
-    ]);
+    expect(result).toEqual(["exclude", "correct"]);
   });
 
-  it("should returnwhen guess word is นมนาน and solution is ทนทาน", () => {
-    const solution = "ทนทาน";
-    const guessWord = "นมนาน";
+  it("should return evaluation when guess word is นมนาน and solution is ทนทาน", () => {
+    const solution = ["ท", "น", "ท", "า", "น"];
+    const guessWord = ["น", "ม", "น", "า", "น"];
 
     const result = evaluate(solution, guessWord);
     expect(result).toEqual([
@@ -65,6 +62,22 @@ describe("evaluations", () => {
       "exclude",
       "correct",
       "correct",
-    ])
-  })
+    ]);
+  });
+
+  it("should return evaluation when guess word is ถลน and solution is ขนม", () => {
+    const solution = ["ข", "น", "ม"];
+    const guessWord = ["ถ", "ล", "น"];
+
+    const result = evaluate(solution, guessWord);
+    expect(result).toEqual(["exclude", "exclude", "include"]);
+  });
+
+  it("should return evaluation when guess word is ถนน and solution is ถลน", () => {
+    const solution = ["ถ", "ล", "น"];
+    const guessWord = ["ถ", "น", "น"];
+
+    const result = evaluate(solution, guessWord);
+    expect(result).toEqual(["correct", "exclude", "correct"]);
+  });
 });
